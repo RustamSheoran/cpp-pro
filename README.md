@@ -3,6 +3,37 @@
 **GitHub Repository:** [github.com/RustamSheoran/cpp-pro](https://github.com/RustamSheoran/cpp-pro)  
 **Master Curriculum Companion:** [github.com/RustamSheoran/cpp-roadmap](https://github.com/RustamSheoran/cpp-roadmap)
 
+---
+
+## Quick Navigation & Curriculum Mapping
+
+Each flagship project directly implements the theoretical and architectural concepts taught in the master [C++ Systems & Performance Engineering Roadmap (cpp-roadmap)](https://github.com/RustamSheoran/cpp-roadmap). Use this index to jump directly to any project blueprint or cross-reference its prerequisite theory phases:
+
+### 🚀 The Capstone Systems Suite
+
+| Project Code | Project Name & Primary Focus | Related Curriculum Phase ([cpp-roadmap](https://github.com/RustamSheoran/cpp-roadmap)) | Jump Link |
+| :---: | :--- | :--- | :---: |
+| **Project 1** | **`itch-xsk`** (Rank #1)<br>NASDAQ TotalView-ITCH 5.0 Feed Handler, MoldUDP64 A/B Gap Recovery & Intrusive L3 Order Book | **[Phase 6: Networking & I/O](https://github.com/RustamSheoran/cpp-roadmap#8-phase-6-networking-and-io)**<br>**[Phase 7: Advanced I/O & Kernel Bypass](https://github.com/RustamSheoran/cpp-roadmap#9-phase-7-advanced-io-and-kernel-bypass)**<br>*(recvmmsg, io_uring, AF_XDP over veth, 64B cache line alignment)* | [Jump to itch-xsk Blueprint](#project-1-rank-1-itch-xsk---nasdaq-totalview-itch-50-moldudp64-feed-handler-gap-recovery-engine-and-cache-optimal-l3-order-book) |
+| **Project 2** | **`shmbus-mc`** (Rank #2)<br>Formally Verified Lock-Free Shared-Memory IPC, Event-Sourced Sequencer & Telemetry Engine | **[Phase 4: Concurrency & Memory Models](https://github.com/RustamSheoran/cpp-roadmap#6-phase-4-concurrency-memory-models)**<br>**[Phase 5: Performance Engineering & Reliability](https://github.com/RustamSheoran/cpp-roadmap#7-phase-5-performance-engineering-reliability)**<br>*(C++20 acquire/release atomics, GenMC RC11/IMM verification, perf c2c HITM)* | [Jump to shmbus-mc Blueprint](#project-2-rank-2-shmbus-mc---formally-verified-lock-free-shared-memory-ipc-event-sourced-sequencer-and-hardware-traced-telemetry-engine) |
+| **Project 3** | **`ouch-risk-sim`** (Rank #3)<br>Compile-Time OUCH 5.0 Execution Gateway, AVX2 SIMD Risk Firewall & Queue-Aware Historical Replay | **[Phase 8: x86-64, Assembly, and SIMD](https://github.com/RustamSheoran/cpp-roadmap#10-phase-8-x86-64-assembly-and-simd)**<br>**[Phase 9: Financial Markets & Trading Mechanics](https://github.com/RustamSheoran/cpp-roadmap#11-phase-9-financial-markets-trading-mechanics)**<br>*(constexpr wire codecs, AVX2 SoA limit checks, FIFO queue priority)* | [Jump to ouch-risk-sim Blueprint](#project-3-rank-3-ouch-risk-sim---compile-time-ouch-50-execution-gateway-simd-pre-trade-risk-firewall-and-queue-aware-historical-replay-engine) |
+| **Foundational** | **`hugepage-arena-allocator`**<br>Custom Arena Allocator & Static 2MB HugePage Memory Pool | **[Phase 2: CPU Architecture, Memory, and Hardware](https://github.com/RustamSheoran/cpp-roadmap#4-phase-2-cpu-architecture-memory-and-hardware)**<br>**[Phase 3: OS Fundamentals & Linux Systems Mastery](https://github.com/RustamSheoran/cpp-roadmap#5-phase-3-os-fundamentals-linux-systems-mastery)**<br>*(Zero-syscall bump allocation, intrusive slab freelists, eliminating page faults)* | [View in cpp-roadmap](https://github.com/RustamSheoran/cpp-roadmap#foundational-project-custom-arena-allocator--hugepage-memory-pool) |
+
+---
+
+### 📑 Document Sections & Analysis
+
+- **[1. What Top HFT Firms Actually Hire For](#what-top-hft-firms-actually-hire-for-verified-evidence-vs-industry-folklore)**: Verified evidence from Citadel, Optiver, HRT, Tower, and Jane Street vs. industry folklore.
+- **[2. The Three Selected Projects, Ranked by Hiring Impact](#the-three-selected-projects-ranked-by-hiring-impact)**: 10 weighted screening criteria and why AF_XDP and OUCH 5.0 were selected.
+- **[3. Project 1 Deep Dive: itch-xsk](#project-1-rank-1-itch-xsk---nasdaq-totalview-itch-50-moldudp64-feed-handler-gap-recovery-engine-and-cache-optimal-l3-order-book)**: Inbound market data, A/B arbitration, Linux I/O ablation, and L3 order book.
+- **[4. Project 2 Deep Dive: shmbus-mc](#project-2-rank-2-shmbus-mc---formally-verified-lock-free-shared-memory-ipc-event-sourced-sequencer-and-hardware-traced-telemetry-engine)**: Lock-free IPC, GenMC bounded model checking, `perf c2c` false-sharing audit, and tail-spike tracing.
+- **[5. Project 3 Deep Dive: ouch-risk-sim](#project-3-rank-3-ouch-risk-sim---compile-time-ouch-50-execution-gateway-simd-pre-trade-risk-firewall-and-queue-aware-historical-replay-engine)**: Outbound gateway, AVX2 SIMD pre-trade risk firewall (< 5 ns), idempotent order FSM, and microstructure replay.
+- **[6. Consolidated Hardware & Cost Breakdown in INR](#consolidated-hardware-and-cost-breakdown-in-inr)**: Proof that all three projects achieve 100% signal at ₹0 mandatory cost on consumer PCs.
+- **[7. How the Three Projects Complement One Another](#how-the-three-projects-complement-one-another)**: Composing the complete electronic trading pipeline (`itch-xsk -> shmbus-mc -> ouch-risk-sim`) and measuring compound p99.9 tail latency.
+- **[8. Suggested 6-12 Month Execution Schedule](#suggested-6-12-month-execution-schedule)**: Interleaved study schedule balancing 18-22 hrs/week systems building with 6-8 hrs/week continuous DSA prep.
+- **[9. Final Assessment: Strengthening an Application from a Tier-3 College](#final-assessment-strengthening-an-application-from-a-tier-3-college)**: 4 concrete mechanisms to bypass pedigree resume screening and earn engineer-backed referrals.
+
+---
+
 To make a senior engineer at Citadel Securities, Optiver, Hudson River Trading (HRT), Jump Trading, Tower Research Capital, or IMC Trading look past a Tier-3 college pedigree, your portfolio must demonstrate how modern C++ maps onto Linux internals, CPU caches, atomic memory models, and network interfaces under realistic market stress.
 
 Rather than building three variations of a toy matching engine, build **three distinct, composable production-grade systems** at **₹0 mandatory hardware cost** using free open-source tooling and authentic historical exchange binary archives:
