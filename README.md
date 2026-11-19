@@ -1,5 +1,8 @@
 # Three Low-Budget C++ Systems Projects Built for HFT Engineering Hiring
 
+**GitHub Repository:** [github.com/RustamSheoran/cpp-pro](https://github.com/RustamSheoran/cpp-pro)  
+**Master Curriculum Companion:** [github.com/RustamSheoran/cpp-roadmap](https://github.com/RustamSheoran/cpp-roadmap)
+
 To make a senior engineer at Citadel Securities, Optiver, Hudson River Trading (HRT), Jump Trading, Tower Research Capital, or IMC Trading look past a Tier-3 college pedigree, your portfolio must demonstrate how modern C++ maps onto Linux internals, CPU caches, atomic memory models, and network interfaces under realistic market stress.
 
 Rather than building three variations of a toy matching engine, build **three distinct, composable production-grade systems** at **₹0 mandatory hardware cost** using free open-source tooling and authentic historical exchange binary archives:
@@ -224,10 +227,11 @@ Document explicitly in your README which measurements are physically valid on co
 ### F. Hardware and Financial Cost (INR)
 
 - **Mandatory Cost (₹0)**: All code compiles and benchmarks on a standard Linux PC, laptop, or dual-boot system using Linux `veth` virtual Ethernet pairs, in-memory packet replay, and open-source verification tooling.
-- **Optional Desktop-Only Upgrade (₹4,799 - ₹10,439)**: Solely if you have a free desktop PCIe slot and wish to measure physical kernel-bypass NIC behavior:
+- **Optional Desktop-Only Upgrade (₹4,799 - ₹11,000)**: Solely if you have a free desktop PCIe slot and wish to measure physical kernel-bypass NIC behavior:
   - **Single-port 2.5GbE Intel I225-V / I226-V**: ~₹2,099.
   - **Dual-Port 2.5GbE Intel I225-T1 / I226**: Listed at **₹4,799 - ₹5,000**.
-  - **Dual-Port 10GbE SFP+ Intel X520-DA2 (82599ES)**: Listed at **₹8,599 - ₹10,439** (requiring an inexpensive Cat6/SFP+ DAC cable).
+  - **Dual-Port 10GbE SFP+ Intel X520-DA2 (82599ES)**: Listed at **₹8,599 - ₹10,439** (uses an inexpensive SFP+ DAC cable, low power ~5W).
+  - **Dual-Port 10GbE RJ45 Intel X540-T2 (10GBASE-T)**: Listed at **₹7,659 - ₹11,000** (uses standard Cat6/Cat6a copper patch cables; operates over the `ixgbe` driver for AF_XDP zero-copy DMA, though runs warmer at ~12-14W).
 - **Physical Kernel-Bypass Caveat**: Enables real physical zero-copy DMA (`igc` / `ixgbe`). Zero-copy `AF_XDP` requires driver-level support (`igc`, `ixgbe`, `i40e`, `ice`, or NVIDIA `mlx5`); buying a generic ₹400 PCIe Realtek NIC will fail because Realtek drivers lack AF_XDP zero-copy UMEM hooks.
 - **Free Baseline Parity**: Running `AF_XDP` across Linux `veth` in copy mode teaches 100% of the software architecture for **₹0**.
 
